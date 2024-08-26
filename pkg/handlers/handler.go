@@ -1,7 +1,6 @@
 package handler
 
 import (
-	"fmt"
 	"strconv"
 	"time"
 
@@ -40,7 +39,6 @@ func (h *Handler) SubmitAddress(c *fiber.Ctx) error {
 	}
 
 	solBalance, err := GetSolBalance(req.SolAddress)
-	fmt.Printf("solBalance: %s\n", solBalance)
 	if err != nil {
 		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
 			"error": err.Error(),

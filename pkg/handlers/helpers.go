@@ -29,8 +29,6 @@ func GetSolBalance(address string) (string, error) {
 		"params": ["%s"]
 	}`, address))
 
-	fmt.Printf("jsonData: %s\n", jsonData)
-
 	resp, err := http.Post(apiUrl, "application/json", bytes.NewBuffer(jsonData))
 	if err != nil {
 		return "0", fmt.Errorf("Failed to fetch native balance: %v", err)
