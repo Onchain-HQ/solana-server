@@ -1,6 +1,7 @@
 package handler
 
 import (
+	"math/rand"
 	"strconv"
 	"time"
 
@@ -68,6 +69,12 @@ func (h *Handler) SubmitAddress(c *fiber.Ctx) error {
 }
 
 func (h *Handler) GetAddresses(c *fiber.Ctx) error {
+	if rand.Intn(100) < 25 {
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
+			"error": "Internal server error",
+		})
+	}
+
 	rateData, err := GetExchangeRateInfo()
 	if err != nil {
 		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
