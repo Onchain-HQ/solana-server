@@ -3,7 +3,7 @@ FROM golang:1.22 AS build
 WORKDIR /go/src/fiber
 
 COPY ./backend/go.mod ./backend/go.sum ./
-RUN --mount=type=cache,target=/go/.cache GOCACHE=/go/.cache go mod download
+RUN go mod download
 
 COPY ./backend .
 
