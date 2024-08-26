@@ -9,7 +9,7 @@ COPY ./backend .
 
 WORKDIR /go/src/fiber/cmd/server
 
-RUN --mount=type=cache,target=/go/.cache GOCACHE=/go/.cache CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -installsuffix cgo -o app .
+RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -installsuffix cgo -o app .
 
 FROM alpine:latest
 
