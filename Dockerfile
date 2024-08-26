@@ -2,10 +2,10 @@ FROM golang:1.22 AS build
 
 WORKDIR /go/src/fiber
 
-COPY ./backend/go.mod ./backend/go.sum ./
+COPY ./go.mod ./go.sum ./
 RUN go mod download
 
-COPY ./backend .
+COPY . .
 
 WORKDIR /go/src/fiber/cmd/server
 
