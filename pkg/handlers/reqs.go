@@ -11,8 +11,7 @@ type SubmitAddressRes struct {
 
 // GET /address
 type GetAddressesRes struct {
-	Addresses    []*SolAddress `json:"addresses"`
-	ExchangeRate float64       `json:"exchange_rate"`
+	Addresses []*SolAddress `json:"addresses"`
 }
 
 // POST /address/name

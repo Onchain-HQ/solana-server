@@ -2,7 +2,6 @@ package handler
 
 import (
 	"math/rand"
-	"strconv"
 	"time"
 
 	"github.com/gofiber/fiber/v2"
@@ -75,28 +74,13 @@ func (h *Handler) GetAddresses(c *fiber.Ctx) error {
 		})
 	}
 
-	rateData, err := GetExchangeRateInfo()
-	if err != nil {
-		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
-			"error": err.Error(),
-		})
-	}
-
-	solRate, err := strconv.ParseFloat(rateData.Data.Rates["SOL"], 64)
-	if err != nil {
-		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
-			"error": err.Error(),
-		})
-	}
-
 	addresses := []*SolAddress{}
 	for _, a := range h.Addresses {
 		addresses = append(addresses, a)
 	}
 
 	res := GetAddressesRes{
-		Addresses:    addresses,
-		ExchangeRate: 1 / solRate,
+		Addresses: addresses,
 	}
 
 	return c.JSON(res)
