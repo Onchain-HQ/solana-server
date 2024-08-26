@@ -115,6 +115,25 @@ func (h *Handler) NameAddress(c *fiber.Ctx) error {
 	return c.Status(200).SendString("Done")
 }
 
+func (h *Handler) DeleteAddress(c *fiber.Ctx) error {
+	req := new(NameAddressReq)
+	if err := c.BodyParser(req); err != nil {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
+			"error": "Invalid request data",
+		})
+	}
+
+	if _, ok := h.Addresses[req.SolAddress]; !ok {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
+			"error": "Address not found",
+		})
+	}
+
+	delete(h.Addresses, req.SolAddress)
+
+	return c.Status(200).SendString("Done")
+}
+
 func (h *Handler) ClearAddresses(c *fiber.Ctx) error {
 	h.Addresses = make(map[string]*SolAddress)
 	return c.Status(200).SendString("Done")

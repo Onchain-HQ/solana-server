@@ -20,3 +20,8 @@ type NameAddressReq struct {
 	SolAddress string `json:"sol_address"`
 	Nickname   string `json:"nickname"`
 }
+
+// POST /address/delete
+type DeleteAddressReq struct {
+	SolAddress string `json:"sol_address"`
+}
