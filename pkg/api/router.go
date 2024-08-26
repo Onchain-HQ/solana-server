@@ -13,7 +13,7 @@ func New(router fiber.Router, handler *handler.Handler) {
 	router.Post("/address", handler.SubmitAddress)
 	router.Get("/address", handler.GetAddresses)
 	router.Post("/address/name", handler.NameAddress)
-	router.Post("/address/delete", handler.DeleteAddress)
+	router.Delete("/address", handler.DeleteAddress)
 
 	router.Post("/clear", handler.ClearAddresses)
 
