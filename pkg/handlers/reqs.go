@@ -1,6 +1,6 @@
 package handler
 
-// POST /address/submit
+// POST /address
 type SubmitAddressReq struct {
 	SolAddress string `json:"sol_address"`
 }
@@ -20,7 +20,7 @@ type NameAddressReq struct {
 	Nickname   string `json:"nickname"`
 }
 
-// POST /address/delete
+// DELETE /address
 type DeleteAddressReq struct {
 	SolAddress string `json:"sol_address"`
 }

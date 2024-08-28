@@ -68,7 +68,9 @@ func (h *Handler) SubmitAddress(c *fiber.Ctx) error {
 }
 
 func (h *Handler) GetAddresses(c *fiber.Ctx) error {
-	if rand.Intn(100) < 25 {
+	skipError := c.Query("skipError")
+
+	if skipError != "true" && rand.Intn(100) < 25 {
 		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
 			"error": "Internal server error",
 		})
